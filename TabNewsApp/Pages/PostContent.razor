@@ -1,0 +1,38 @@
+﻿@page "/{Username}/{Slug}"
+
+@if (_post is not null)
+{
+    <div class="main">
+        <div class="body">
+            <div class="header">
+                <span class="username">@_post.OwnerUsername</span>
+                <TabDate Date="@_post.CreatedAt" />
+            </div>
+
+            <div class="title-post">
+                <TabCoins Value="@_post.TabCoins" />
+                <h1>@_post.Title</h1>
+            </div>
+            
+            <PostBody BodyMarkdown="@_post.Body"/>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Username { get; set; }
+
+    [Parameter]
+    public string Slug { get; set; }
+
+    [Inject]
+    private IPostService _postService { get; set; }
+
+    private Post _post { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _post = await _postService.Get(Username, Slug);
+    }
+}

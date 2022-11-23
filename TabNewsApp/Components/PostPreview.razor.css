@@ -1,0 +1,22 @@
+﻿.post-preview {
+    display: flex;
+    gap: .5rem;
+    background: #EEEEEE;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: .9rem;
+    position: relative;   
+}
+
+.preview-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    overflow: auto;
+}
+
+.preview-footer {
+    font-size: .8rem;
+    color: #676767;
+}

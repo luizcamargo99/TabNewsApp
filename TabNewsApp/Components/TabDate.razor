@@ -1,0 +1,15 @@
+﻿<span>@_formattedDate</span>
+
+@code {
+    [Parameter]
+    public DateTime Date { get; set; }
+
+    private string _formattedDate { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var realNow = DateExtension.RealNow();
+        var dateDiff = realNow - Date;
+
+    }
+}

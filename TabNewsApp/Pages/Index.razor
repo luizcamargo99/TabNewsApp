@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@if (_posts is not null)
+{
+    <div class="main">
+        @for (int i = 0; i < _posts.Count; i++)
+        {
+            <PostPreview PostModel="@_posts[i]" Order="@(i + 1)" />
+        }
+    </div>
+}
+
+@code {
+    [Inject]
+    private IPostService _postService { get; set; }
+
+    private List<Post> _posts { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _posts = await _postService.GetAll(1, 30, EStrategy.Relevant);
+    }
+}

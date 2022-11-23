@@ -1,0 +1,8 @@
+﻿@using Markdig
+
+@((MarkupString)Markdown.ToHtml(BodyMarkdown))
+
+@code {
+    [Parameter]
+    public string BodyMarkdown { get; set; }
+}
