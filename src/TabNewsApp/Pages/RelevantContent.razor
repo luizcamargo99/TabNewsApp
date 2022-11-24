@@ -12,14 +12,17 @@ else if (_contents is not null)
     <InfiniteScroll ObserverTargetId="observerTarget" ObservableTargetReached="(x) => GetContentsAsync()">
         <div class="main">
             @for (int i = 0; i < _contents.Count; i++)
+            {
                 <ContentPreview ContentObj="@_contents[i]" Order="@(i + 1)" RealNow="@_realNow" />
+            }
 
             @if (httpService.IsLoading)
+            {
                 <span>LOADING</span>
-
-                <span id="observerTarget" style="display: @(httpService.IsLoading ? "none" : "flex");"></span>
-            </div>
-        </InfiniteScroll>
+            }
+            <span id="observerTarget" style="display: @(httpService.IsLoading ? "none" : "flex");"></span>
+        </div>
+    </InfiniteScroll>
 
 
 }
@@ -43,7 +46,9 @@ else if (_contents is not null)
         _currentPage += 1;
 
         if (httpService.IsLoading)
+        {
             return;
+        }
 
         var contents = await _contentService.GetAll(_currentPage, 30, EStrategy.Relevant);
         _contents.AddRange(contents);
