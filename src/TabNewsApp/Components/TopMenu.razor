@@ -1,0 +1,25 @@
+﻿<header>
+    @if (OnBackButtonClick is not null)
+    {
+        <i class="oi oi:chevron-left"></i>
+    }
+    else
+    {
+        <span></span>
+    }
+
+    <div class="center-ctn">
+        <Logo />
+        <span>@Title</span>
+    </div>
+   
+    <span></span>
+</header>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public Action OnBackButtonClick { get; set; }
+}

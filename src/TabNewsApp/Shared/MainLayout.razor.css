@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    margin: 10rem 2rem;
 }
 
 main {

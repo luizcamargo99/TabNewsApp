@@ -4,12 +4,50 @@
     [Parameter]
     public DateTime Date { get; set; }
 
+    [Parameter]
+    public DateTime RealNow { get; set; }
+
     private string _formattedDate { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        var realNow = DateExtension.RealNow();
-        var dateDiff = realNow - Date;
+        _formattedDate = GetFormattedDate();
+    }
 
+    private string GetFormattedDate()
+    {
+        var dateDiff = RealNow - Date;
+
+        if (dateDiff.Days >= 365)
+        {
+            decimal result = dateDiff.Days / 365;
+            var years = Convert.ToInt32(Math.Floor(result));
+            return $"{years} {GetLabel(years, "ano", "anos")} atrás";
+        }
+        else if (dateDiff.Days >= 30)
+        {
+            decimal result = dateDiff.Days / 30;
+            var months = Convert.ToInt32(Math.Floor(result));
+            return $"{months} {GetLabel(months, "mes", "meses")} atrás";
+        }
+        else if (dateDiff.Days >= 1 && dateDiff.Days < 30)
+        {
+            return $"{dateDiff.Days} {GetLabel(dateDiff.Days, "dia", "dias")} atrás";
+        }
+        else if (dateDiff.Hours >= 1)
+        {
+            return $"{dateDiff.Hours} {GetLabel(dateDiff.Hours, "hora", "horas")} atrás";
+        }
+        else if (dateDiff.Minutes >= 1)
+        {
+            return $"{dateDiff.Minutes} {GetLabel(dateDiff.Minutes, "minuto", "minutos")} atrás";
+        }
+
+        return "Agora a pouco";
+    }
+
+    private string GetLabel(int val, string singular, string plural)
+    {
+        return val == 1 ? singular : plural;
     }
 }

@@ -1,6 +1,9 @@
 ﻿@using Markdig
 
-@((MarkupString)Markdown.ToHtml(BodyMarkdown))
+<span>
+    @((MarkupString)Markdown.ToHtml(BodyMarkdown))
+</span>
+
 
 @code {
     [Parameter]

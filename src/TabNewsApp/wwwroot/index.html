@@ -25,7 +25,33 @@
     </div>
 
     <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script>
+        window.Observer = {
 
+            observer: null,
+
+            Initialize: function (component, observerTargetId) {
+
+                this.observer = new IntersectionObserver(e => {
+
+                    component.invokeMethodAsync('OnIntersaction');
+
+                });
+
+
+
+                let element = document.getElementById(observerTargetId);
+
+                if (element == null) throw new Error("Target was not found");
+
+                this.observer.observe(element);
+
+                return "ok";
+
+            }
+
+        };
+    </script>
 </body>
 
 </html>

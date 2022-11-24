@@ -1,4 +1,4 @@
-﻿.post-preview {
+﻿.preview-main {
     display: flex;
     gap: .5rem;
     background: #EEEEEE;
@@ -17,6 +17,6 @@
 }
 
 .preview-footer {
-    font-size: .8rem;
+    font-size: .65rem;
     color: #676767;
 }

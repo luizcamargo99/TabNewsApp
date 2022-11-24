@@ -1,20 +1,25 @@
 ﻿@page "/{Username}/{Slug}"
+@inherits BasePage
 
-@if (_post is not null)
+@if (IsLoading)
+{
+    <Loading />
+}
+else if (_content is not null)
 {
     <div class="main">
         <div class="body">
             <div class="header">
-                <span class="username">@_post.OwnerUsername</span>
-                <TabDate Date="@_post.CreatedAt" />
+                <span class="username">@_content.OwnerUsername</span>
+                <TabDate Date="@_content.CreatedAt" RealNow="tabDateService.RealNow" />
             </div>
 
-            <div class="title-post">
-                <TabCoins Value="@_post.TabCoins" />
-                <h1>@_post.Title</h1>
+            <div class="title-content">
+                <TabCoins Value="@_content.TabCoins" />
+                <h1>@_content.Title</h1>
             </div>
-            
-            <PostBody BodyMarkdown="@_post.Body"/>
+
+            <ContentBody BodyMarkdown="@_content.Body" />
         </div>
     </div>
 }
@@ -27,12 +32,12 @@
     public string Slug { get; set; }
 
     [Inject]
-    private IPostService _postService { get; set; }
+    private IContentService _postService { get; set; }
 
-    private Post _post { get; set; }
+    private Content _content { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        _post = await _postService.Get(Username, Slug);
+        _content = await _postService.Get(Username, Slug);
     }
 }

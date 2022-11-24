@@ -2,7 +2,7 @@
 
 namespace TabNewsApp.Data
 {
-    public class Post : Base
+    public class Content
     {
         [JsonProperty("id")]
         public Guid Id { get; set; }

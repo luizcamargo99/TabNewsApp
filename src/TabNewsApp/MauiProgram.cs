@@ -25,7 +25,8 @@ public static class MauiProgram
 #endif
 
 		builder.Services.AddScoped<IHttpService, HttpService>();
-        builder.Services.AddScoped<IPostService, PostService>();
+        builder.Services.AddScoped<IContentService, ContentService>();
+        builder.Services.AddScoped<ITabDateService, TabDateService>();
 
         return builder.Build();
 	}

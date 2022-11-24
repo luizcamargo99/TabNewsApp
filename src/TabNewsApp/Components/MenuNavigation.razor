@@ -1,0 +1,79 @@
+﻿
+<div class='@(_loading ? "nav none" : "nav")' style="display: @(_display)">
+    @foreach (EMenuNavigation item in Enum.GetValues(typeof(EMenuNavigation)))
+    {
+        <div class="@(string.IsNullOrEmpty(_class[(int)item]) ? "nav-item active" : _class[(int)item])" @onclick='() => { ClickMenu((int)item);  }'>
+            <i class="@(item.ToIconDescription())"></i>
+            <span class="nav-text">@item.ToDescription()</span>
+        </div>
+    }
+</div>
+
+<div class='@(_loading ? "nav" : "nav none")'>
+    <div class="nav-item">
+        <span class="nav-text"></span>
+    </div>
+</div>
+
+
+@code {
+    private string[] _class = new string[Enum.GetValues(typeof(EMenuNavigation)).Length];
+    private bool _loading = true;
+    private bool _replace = false;
+    private string _display = "flex";
+
+    protected override void OnInitialized()
+    {
+        for (var i = 0; i < _class.Length; i++)
+        {
+            _class[i] = "nav-item";
+        }
+
+        if (Array.IndexOf(_class, "nav-item active") < 0)
+        {
+            _class[(int)EMenuNavigation.Relevant] = "nav-item active";
+        }
+
+        _loading = false;
+    }
+
+    public void ClickMenu(int index)
+    {
+        HandleActiveMenu(GetActiveMenuIndex(), index, true);
+
+        GoToRouteByIndex(index);
+    }
+
+
+    private int GetActiveMenuIndex()
+    {
+        return Array.IndexOf(_class, "nav-item active");
+    }
+
+    private void HandleActiveMenu(int currentIndex, int index, bool isClick = false)
+    {
+        if (currentIndex != index)
+        {
+            _class[currentIndex] = "nav-item";
+            _class[index] = "nav-item active";
+
+            StateHasChanged();
+        }
+    }
+
+    private void GoToRouteByIndex(int index)
+    {
+        switch (index)
+        {
+            case (int)EMenuNavigation.Relevant:
+                navigationManager.NavigateTo("/");
+                break;
+            case (int)EMenuNavigation.New:
+                navigationManager.NavigateTo("/");
+                break;
+            case (int)EMenuNavigation.Profile:
+                navigationManager.NavigateTo("/");
+                break;
+        }
+    }
+}

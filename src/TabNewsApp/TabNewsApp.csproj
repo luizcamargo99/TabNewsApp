@@ -60,11 +60,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Components\PostBody.razor.css" />
+      <Content Include="Components\ContentBody.razor.css" />
+      <Content Include="Components\MenuNavigation.razor.css" />
+      <Content Include="Components\Loading.razor.css" />
+      <Content Include="Components\TopMenu.razor.css" />
       <Content Include="Components\TabDate.razor.css" />
       <Content Include="Components\TabCoins.razor.css" />
       <Content Include="Components\Separator.razor.css" />
-      <Content Include="Components\PostPreview.razor.css" />
+      <Content Include="Components\ContentPreview.razor.css" />
       <Content Include="Pages\PostContent.razor.css" />
     </ItemGroup>
 

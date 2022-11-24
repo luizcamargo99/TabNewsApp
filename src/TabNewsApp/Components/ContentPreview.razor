@@ -1,0 +1,33 @@
+﻿
+<div class="preview-main" @onclick="async() => { await ClickOnPostAsync(); }">
+    <span class="bold">@(Order).</span>
+    <div class="preview-content">
+        <span class="bold">@(ContentObj.Title)</span>
+        <div class="preview-footer">
+            <span>@(ContentObj.TabCoins) tabcoins</span>
+            <Separator />
+            <span>@(ContentObj.ChildrenDeepCount) comentários</span>
+            <Separator />
+            <span>@(ContentObj.OwnerUsername)</span>
+            <Separator />
+            <TabDate Date="@(ContentObj.CreatedAt)" RealNow="RealNow" />
+        </div>
+
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Content ContentObj { get; set; }
+
+    [Parameter]
+    public int Order { get; set; }
+
+    [Parameter]
+    public DateTime RealNow { get; set; }
+
+    private async Task ClickOnPostAsync()
+    {
+        navigationManager.NavigateTo($"{ContentObj.OwnerUsername}/{ContentObj.Slug}");
+    }
+}

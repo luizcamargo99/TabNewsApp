@@ -1,0 +1,20 @@
+﻿header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #24292F;
+    height: 3.5rem;
+    color: #fff;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+}
+
+.center-ctn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    font-size: 1.2rem;
+}

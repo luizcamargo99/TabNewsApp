@@ -5,6 +5,7 @@ html, body {
     color: #24282F;
     width: 100% !important;
     letter-spacing: 1px;
+    scroll-behavior: auto !important
 }
 
 img {
@@ -95,6 +96,7 @@ a, .btn-link {
     flex-direction: column;
     gap: 1rem;
     justify-content: center;
+    padding: 5rem 1rem !important;
 }
 
 span {

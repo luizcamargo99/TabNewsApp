@@ -1,19 +1,1 @@
 ﻿
-.tabcoins {
-    display: flex;
-    flex-direction: column;
-    gap: .7rem;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-}
-
-    .tabcoins span {
-        color: rgb(9, 105, 218);
-        font-size: .75rem;
-    }
-
-    .tabcoins i {
-        color: rgb(164, 166, 169);
-        font-size: .6rem;
-    }
