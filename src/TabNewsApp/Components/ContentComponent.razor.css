@@ -1,0 +1,53 @@
+﻿.body {
+    -webkit-text-size-adjust: 100%;
+    box-sizing: content-box;
+    overflow: auto !important;
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.title-content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+    .title-content h1 {
+        overflow: hidden;
+        overflow-wrap: break-word;
+    }
+
+
+.username {
+    display: flex;
+    text-align: center;
+    color: rgb(9, 105, 218);
+    background-color: rgb(221, 244, 255);
+    padding: .2rem .4rem;
+    border-radius: .5rem;
+    max-width: 100%;
+    font-size: .8rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: start;
+    align-content: center;
+    align-items: center;
+    font-size: .8rem;
+}
+
+button {
+    outline: none;
+    background: #F3F4F6;
+    border: .1rem solid #DEDEDE;
+    border-radius: .5rem;
+    padding: .5rem;
+    width: 7rem;
+    font-size: .9rem;
+}

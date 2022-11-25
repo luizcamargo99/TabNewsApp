@@ -18,22 +18,24 @@ else if (_contents is not null)
 
             @if (httpService.IsLoading)
             {
-                <span>LOADING</span>
+                <div class="ldng-main">
+                    <LoadingTwo />
+                </div>
             }
+
             <span id="observerTarget" style="display: @(httpService.IsLoading ? "none" : "flex");"></span>
         </div>
     </InfiniteScroll>
-
-
 }
 
 @code {
     [Inject]
     private IContentService _contentService { get; set; }
 
-    private List<Content> _contents { get; set; } = new List<Content>();
+    private List<ContentModel> _contents { get; set; } = new();
+    private Pagination _pagination { get; set; } = new() { Page = 0, PerPage = 30 };
+    private bool _onStart = true;
     private DateTime _realNow { get; set; }
-    private int _currentPage = 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,14 +45,13 @@ else if (_contents is not null)
 
     private async Task GetContentsAsync()
     {
-        _currentPage += 1;
-
-        if (httpService.IsLoading)
+        if ((httpService.IsLoading && _pagination.Page > 0) || (_onStart && _pagination.Page > 0))
         {
+            _onStart = false;
             return;
         }
 
-        var contents = await _contentService.GetAll(_currentPage, 30, EStrategy.Relevant);
-        _contents.AddRange(contents);
+        _pagination.Page += 1;
+        _contents.AddRange(await _contentService.GetAll(_pagination.Page, _pagination.PerPage, EStrategy.Relevant));
     }
 }

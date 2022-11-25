@@ -1,0 +1,52 @@
+﻿<div class="main" style="padding: @(Content.ParentId is not null ? "1.5rem 1rem !important;" : "")">
+    <div class="body">
+        <div class="header">
+            <span class="username">@Content.OwnerUsername</span>
+            <TabDate Date="@Content.CreatedAt" RealNow="RealNow" />
+        </div>
+
+        <div class="title-content">
+            <TabCoins Value="@Content.TabCoins" />
+            @if (string.IsNullOrEmpty(Content.Title))
+            {
+                <ContentBody BodyMarkdown="@Content.Body" />            
+            }
+            else
+            {
+                <h1>@Content.Title</h1>
+            }
+        </div>
+
+        @if (string.IsNullOrEmpty(Content.Title) == false)
+        {
+            <ContentBody BodyMarkdown="@Content.Body" />
+        }    
+        
+        <button>Responder</button>
+
+        @if (Content.Children is not null)
+        {
+            @foreach (var content in Content.Children)
+            {
+                <ContentComponent Content="content" RealNow="RealNow" />
+            }
+        }
+
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public ContentModel Content { get; set; }
+
+    [Parameter]
+    public DateTime RealNow { get; set; }
+
+    [Inject]
+    private IContentService _postService { get; set; }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+
+    //}
+}

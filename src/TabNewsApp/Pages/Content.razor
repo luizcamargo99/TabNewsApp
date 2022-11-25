@@ -1,0 +1,36 @@
+﻿@page "/{Username}/{Slug}"
+@inherits BasePage
+
+<TopMenu HasBackButton="true"/>
+
+@if (IsLoading)
+{
+    <Loading />
+}
+else if (_content is not null)
+{
+    <ContentComponent Content="@_content" RealNow="tabDateService.RealNow" />
+}
+
+@code {
+    [Parameter]
+    public string Username { get; set; }
+
+    [Parameter]
+    public string Slug { get; set; }
+
+    [Inject]
+    private IContentService _postService { get; set; }
+
+    private ContentModel _content { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _content = await _postService.Get(Username, Slug);
+
+        if (_content.Children is null)
+        {
+            _content.Children = await _postService.GetChildren(_content.OwnerUsername, _content.Slug);
+        }
+    }
+}

@@ -4,11 +4,12 @@
     justify-content: space-between;
     align-items: center;
     background: #24292F;
-    height: 3.5rem;
+    height: 4rem;
     color: #fff;
     position: fixed;
     z-index: 1000;
     width: 100%;
+    padding: 0 2em;
 }
 
 .center-ctn {

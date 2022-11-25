@@ -1,10 +1,9 @@
 ﻿
 <div class='@(_loading ? "nav none" : "nav")' style="display: @(_display)">
     @foreach (EMenuNavigation item in Enum.GetValues(typeof(EMenuNavigation)))
-    {
-        <div class="@(string.IsNullOrEmpty(_class[(int)item]) ? "nav-item active" : _class[(int)item])" @onclick='() => { ClickMenu((int)item);  }'>
+    {      
+        <div class="@(string.IsNullOrEmpty(_class[(int)item]) ? "nav-item active" : _class[(int)item])" @onclick='() => { ClickMenu(item); }'>
             <i class="@(item.ToIconDescription())"></i>
-            <span class="nav-text">@item.ToDescription()</span>
         </div>
     }
 </div>
@@ -37,17 +36,10 @@
         _loading = false;
     }
 
-    public void ClickMenu(int index)
+    private void ClickMenu(EMenuNavigation item)
     {
-        HandleActiveMenu(GetActiveMenuIndex(), index, true);
-
-        GoToRouteByIndex(index);
-    }
-
-
-    private int GetActiveMenuIndex()
-    {
-        return Array.IndexOf(_class, "nav-item active");
+        HandleActiveMenu(GetActiveMenuIndex(), Array.IndexOf(_class, _class[(int)item]));
+        navigationManager.NavigateTo(item.ToRouteDescription());
     }
 
     private void HandleActiveMenu(int currentIndex, int index, bool isClick = false)
@@ -56,24 +48,12 @@
         {
             _class[currentIndex] = "nav-item";
             _class[index] = "nav-item active";
-
             StateHasChanged();
         }
     }
 
-    private void GoToRouteByIndex(int index)
+    private int GetActiveMenuIndex()
     {
-        switch (index)
-        {
-            case (int)EMenuNavigation.Relevant:
-                navigationManager.NavigateTo("/");
-                break;
-            case (int)EMenuNavigation.New:
-                navigationManager.NavigateTo("/");
-                break;
-            case (int)EMenuNavigation.Profile:
-                navigationManager.NavigateTo("/");
-                break;
-        }
+        return Array.IndexOf(_class, "nav-item active");
     }
 }

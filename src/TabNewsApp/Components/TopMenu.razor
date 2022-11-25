@@ -1,25 +1,28 @@
 ﻿<header>
-    @if (OnBackButtonClick is not null)
-    {
-        <i class="oi oi:chevron-left"></i>
-    }
-    else
-    {
-        <span></span>
-    }
-
     <div class="center-ctn">
-        <Logo />
+        @if (HasBackButton)
+        {
+            <BackButton />
+        }
+        else
+        {
+            <Logo />
+        }
+
+
         <span>@Title</span>
+
     </div>
-   
+
+    <span></span>
+
     <span></span>
 </header>
 
 @code {
     [Parameter]
-    public string Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 
     [Parameter]
-    public Action OnBackButtonClick { get; set; }
+    public bool HasBackButton { get; set; } = false;
 }

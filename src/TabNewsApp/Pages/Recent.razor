@@ -1,0 +1,57 @@
+﻿@page "/Recent"
+@inherits BasePage
+
+<TopMenu Title="Recentes" />
+
+@if (IsLoading)
+{
+    <Loading />
+}
+else if (_contents is not null)
+{
+    <InfiniteScroll ObserverTargetId="observerTarget" ObservableTargetReached="(x) => GetContentsAsync()">
+        <div class="main">
+            @for (int i = 0; i < _contents.Count; i++)
+            {
+                <ContentPreview ContentObj="@_contents[i]" Order="@(i + 1)" RealNow="@_realNow" />
+            }
+
+            @if (httpService.IsLoading)
+            {
+                <div class="ldng-main">
+                    <LoadingTwo />
+                </div>              
+            }
+
+            <span id="observerTarget" style="display: @(httpService.IsLoading ? "none" : "flex");"></span>
+        </div>
+    </InfiniteScroll>
+}
+
+@code {
+    [Inject]
+    private IContentService _contentService { get; set; }
+
+    private List<ContentModel> _contents { get; set; } = new();
+    private Pagination _pagination { get; set; } = new() { Page = 0, PerPage = 30 };
+    private bool _onStart = true;
+    private DateTime _realNow { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _realNow = tabDateService.RealNow;
+        await GetContentsAsync();
+    }
+
+    private async Task GetContentsAsync()
+    {
+        if ((httpService.IsLoading && _pagination.Page > 0) || (_onStart && _pagination.Page > 0))
+        {
+            _onStart = false;
+            return;
+        }
+
+        _pagination.Page += 1;
+        _contents.AddRange(await _contentService.GetAll(_pagination.Page, _pagination.PerPage, EStrategy.New));
+    }
+}

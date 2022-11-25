@@ -2,7 +2,7 @@
 
 namespace TabNewsApp.Data
 {
-    public class Content
+    public class ContentModel
     {
         [JsonProperty("id")]
         public Guid Id { get; set; }
@@ -45,6 +45,9 @@ namespace TabNewsApp.Data
 
         [JsonProperty("owner_username")]
         public string OwnerUsername { get; set; }
+
+        [JsonProperty("children")]
+        public List<ContentModel> Children { get; set; }
 
         [JsonProperty("children_deep_count")]
         public int ChildrenDeepCount { get; set; }

@@ -97,6 +97,7 @@ a, .btn-link {
     gap: 1rem;
     justify-content: center;
     padding: 5rem 1rem !important;
+    align-content: center;
 }
 
 span {
@@ -106,4 +107,11 @@ span {
 
 .bold {
     font-weight: bold;
+}
+
+.ldng-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

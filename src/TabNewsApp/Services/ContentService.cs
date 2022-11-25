@@ -14,13 +14,18 @@ internal class ContentService : IContentService
         _httpService = httpService; 
     }
 
-    public async Task<List<Content>> GetAll(int page, int perPage, EStrategy strategy = EStrategy.Relevant)
+    public async Task<List<ContentModel>> GetAll(int page, int perPage, EStrategy strategy = EStrategy.Relevant)
     {
-        return await _httpService.RequestAsync<List<Content>>(() => _httpService.GetAsync($"{UrlConstant.BaseURL}/contents?page={page}&per_page={perPage}&strategy={strategy.ToString().ToLower()}"));
+        return await _httpService.RequestAsync<List<ContentModel>>(() => _httpService.GetAsync($"{UrlConstant.BaseURL}/contents?page={page}&per_page={perPage}&strategy={strategy.ToString().ToLower()}"));
     }
 
-    public async Task<Content> Get(string username, string slug)
+    public async Task<ContentModel> Get(string username, string slug)
     {
-        return await _httpService.RequestAsync<Content>(() => _httpService.GetAsync($"{UrlConstant.BaseURL}/contents/{username}/{slug}"));
+        return await _httpService.RequestAsync<ContentModel>(() => _httpService.GetAsync($"{UrlConstant.BaseURL}/contents/{username}/{slug}"));
+    }
+
+    public async Task<List<ContentModel>> GetChildren(string username, string slug)
+    {
+        return await _httpService.RequestAsync<List<ContentModel>>(() => _httpService.GetAsync($"{UrlConstant.BaseURL}/contents/{username}/{slug}/children"));
     }
 }

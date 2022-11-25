@@ -16,5 +16,11 @@ namespace TabNewsApp.Extensions
             return typeof(TEnum).GetMember(enumValue.ToString())
                 .SelectMany(member => member.GetCustomAttributes(typeof(IconAttribute), true).Cast<IconAttribute>()).FirstOrDefault().IconValue;
         }
+
+        public static string ToRouteDescription<TEnum>(this TEnum enumValue) where TEnum : struct
+        {
+            return typeof(TEnum).GetMember(enumValue.ToString())
+                .SelectMany(member => member.GetCustomAttributes(typeof(RouteDescriptionAttribute), true).Cast<RouteDescriptionAttribute>()).FirstOrDefault().RouteDescription;
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace TabNewsApp.Interfaces;
 
 internal interface IContentService
 {
-    Task<List<Content>> GetAll(int page, int perPage, EStrategy strategy);
-    Task<Content> Get(string username, string slug);
+    Task<List<ContentModel>> GetAll(int page, int perPage, EStrategy strategy);
+    Task<ContentModel> Get(string username, string slug);
+    Task<List<ContentModel>> GetChildren(string username, string slug);
 }

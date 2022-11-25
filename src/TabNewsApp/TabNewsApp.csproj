@@ -50,8 +50,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiCss Remove="Components\Separator - Cópia.razor.css" />
-      <MauiCss Remove="Components\TabCoins - Cópia.razor.css" />
+      <MauiCss Remove="Components\ContentComponent.razor.css" />
     </ItemGroup>
 
     <ItemGroup>
@@ -61,6 +60,9 @@
 
     <ItemGroup>
       <Content Include="Components\ContentBody.razor.css" />
+      <Content Include="Components\BackButton.razor.css" />
+      <Content Include="Components\ContentComponent.razor.css" />
+      <Content Include="Components\LoadingTwo.razor.css" />
       <Content Include="Components\MenuNavigation.razor.css" />
       <Content Include="Components\Loading.razor.css" />
       <Content Include="Components\TopMenu.razor.css" />
@@ -68,7 +70,8 @@
       <Content Include="Components\TabCoins.razor.css" />
       <Content Include="Components\Separator.razor.css" />
       <Content Include="Components\ContentPreview.razor.css" />
-      <Content Include="Pages\PostContent.razor.css" />
+      <Content Include="Pages\Status.razor.css" />
+      <Content Include="Pages\Content.razor.css" />
     </ItemGroup>
 
     <ItemGroup>
