@@ -1,4 +1,4 @@
-﻿<div class="main" style="padding: @(Content.ParentId is not null ? "1.5rem 1rem !important;" : "")">
+﻿<div class="main" style="padding: @(Content.ParentId is not null ? "1.5rem 1rem !important" : "")">
     <div class="body">
         <div class="header">
             <span class="username">@Content.OwnerUsername</span>
@@ -41,12 +41,4 @@
 
     [Parameter]
     public DateTime RealNow { get; set; }
-
-    [Inject]
-    private IContentService _postService { get; set; }
-
-    //protected override async Task OnInitializedAsync()
-    //{
-
-    //}
 }
