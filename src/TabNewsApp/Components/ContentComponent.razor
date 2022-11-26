@@ -1,4 +1,4 @@
-﻿<div class="main" style="padding: @(Content.ParentId is not null ? "1.5rem 1rem !important" : "")">
+﻿<div class="main" style="padding: @(Content.ParentId is not null ? "1.5rem .1rem .5rem 1rem !important" : "")">
     <div class="body">
         <div class="header">
             <span class="username">@Content.OwnerUsername</span>
@@ -7,22 +7,26 @@
 
         <div class="title-content">
             <TabCoins Value="@Content.TabCoins" />
-            @if (string.IsNullOrEmpty(Content.Title))
-            {
-                <ContentBody BodyMarkdown="@Content.Body" />            
-            }
-            else
-            {
-                <h1>@Content.Title</h1>
-            }
+            <BodyText>
+                @if (string.IsNullOrEmpty(Content.Title))
+                {
+                    <ContentBody BodyMarkdown="@Content.Body" />
+                    <button>Responder</button>
+                }
+                else
+                {
+                    <h1 style="margin-bottom: 5rem;">@Content.Title</h1>
+                }
+            </BodyText>
         </div>
 
         @if (string.IsNullOrEmpty(Content.Title) == false)
         {
-            <ContentBody BodyMarkdown="@Content.Body" />
-        }    
-        
-        <button>Responder</button>
+            <BodyText>
+                <ContentBody BodyMarkdown="@Content.Body" />
+                <button>Responder</button>
+            </BodyText>
+        }
 
         @if (Content.Children is not null)
         {

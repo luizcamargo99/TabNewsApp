@@ -13,10 +13,10 @@ namespace TabNewsApp.Enums
         [Icon("oi oi-clock")]
         [RouteDescription("/Recent")]
         New,
-        [Description("Status")]
-        [Icon("oi oi-graph")]
-        [RouteDescription("/Status")]
-        Status,
+        [Description("Favorites")]
+        [Icon("oi oi-star")]
+        [RouteDescription("/Favorites")]
+        Favorites,
         [Description("Perfil")]
         [Icon("oi oi-person")]
         [RouteDescription("/Profile")]

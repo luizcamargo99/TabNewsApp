@@ -5,7 +5,9 @@ html, body {
     color: #24282F;
     width: 100% !important;
     letter-spacing: 1px;
-    scroll-behavior: auto !important
+    scroll-behavior: auto !important;
+    height: 100% !important;
+    position: relative;
 }
 
 img {
@@ -98,6 +100,8 @@ a, .btn-link {
     justify-content: center;
     padding: 5rem 1rem !important;
     align-content: center;
+    height: 100% !important;
+    position: relative;
 }
 
 span {
